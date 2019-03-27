@@ -84,7 +84,7 @@ class QrCodeActivity: Activity(), View.OnClickListener, QRCodeView.Delegate {
                 setResult(1001,data)
                 finish()
             }else{
-                ToastUtil.ToastUtil.showText("请扫描正确二维码！")
+                ToastUtil.show(this@QrCodeActivity,"请扫描正确二维码！")
                 zxingview.startSpotAndShowRect()
                 return
             }
@@ -94,12 +94,13 @@ class QrCodeActivity: Activity(), View.OnClickListener, QRCodeView.Delegate {
 
     override fun onCameraAmbientBrightnessChanged(isDark: Boolean) {
         if (isDark&&!flash){
-            ToastUtil.ToastUtil.showText("光线太暗，青请到光亮的地方或者打开闪光灯")
+            ToastUtil.show(this@QrCodeActivity,"光线太暗，青请到光亮的地方或者打开闪光灯")
         }
     }
 
     override fun onScanQRCodeOpenCameraError() {
-        ToastUtil.ToastUtil.showText("打开摄像头出错")
+        ToastUtil.show(this@QrCodeActivity,"打开摄像头出错")
+
     }
 
 

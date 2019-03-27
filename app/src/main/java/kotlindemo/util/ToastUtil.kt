@@ -1,66 +1,41 @@
 package kotlindemo.util
 
-import android.app.Activity
 import android.content.Context
 import android.widget.Toast
-import kotlindemo.MyApplication
 
 class ToastUtil{
 
-    object ToastUtil{
-        private var mToast: Toast? = null
+    companion object {
+        private var toast: Toast?=null
 
-        var mContext = MyApplication.instance
+        fun show(context: Context, resourceID:Int){
+            show(context, resourceID, Toast.LENGTH_SHORT)
+        }
 
-        private val toast: Toast? = null
+        fun show(context:Context,text:String){
+            show(context, text, Toast.LENGTH_SHORT)
+        }
 
-        fun showText(text: CharSequence) {
-            if (mContext != null) {
-                if (mToast == null) {
-                    mToast = Toast.makeText(mContext, text, Toast.LENGTH_SHORT)
-                } else {
-                    mToast!!.setText(text)
-                    mToast!!.duration = Toast.LENGTH_SHORT
-                }
-                try {
-                    mToast!!.show()
-                } catch (var2: Throwable) {
-                    var2.printStackTrace()
-                }
+        fun show(context:Context,resourceID:Int,duration:Int){
+            val text = context.resources.getString(resourceID)
+            show(context, text, duration)
+        }
 
+        fun show(context:Context,text:String,duration: Int){
+            toast = if(toast == null){
+                Toast.makeText(context, text, duration)
+            }else{
+                toast?.cancel()
+                Toast.makeText(context, text, duration)
             }
+            toast?.show()
         }
     }
 
 
 
+    }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    companion object {
-//
-//        private lateinit var mToast:Toast
-//        private val mContext = MyApplication.javaClass.newInstance()
-//
-//        fun showText(text: CharSequence){
-//            mToast = Toast.makeText(mContext,text,Toast.LENGTH_SHORT)
-//        }
-//    }
-}

@@ -34,7 +34,7 @@ class MainActivity : Activity(), View.OnClickListener , EasyPermissions.Permissi
     private val REQUEST_CODE_QRCODE_PERMISSIONS =1
     private lateinit var webSettings: WebSettings
     private var path = "/app/index.asp"
-    private var firstTime = 0
+    private var firstTime: Long = 0
     val FILE_CHOOSER_RESULT_CODE_FOR_ANDROID_5 = 2
     val FILE_CHOOSER_RESULT_CODE = 3
     var fromWhere = ""
@@ -237,10 +237,9 @@ class MainActivity : Activity(), View.OnClickListener , EasyPermissions.Permissi
             webview.goBack()
             return true
         } else {
-
             if (secondTime - firstTime > 2000) {
-                ToastUtil.ToastUtil.showText("再按一次退出程序")
-                firstTime = secondTime.toInt()
+                ToastUtil.show(this@MainActivity,"再按一次退出程序")
+                firstTime = secondTime
                 return true
             } else {
                 System.exit(0)
@@ -379,7 +378,8 @@ class MainActivity : Activity(), View.OnClickListener , EasyPermissions.Permissi
         Matisse.from(this@MainActivity)
             .choose(MimeType.ofAll())
             .countable(true)
-            .captureStrategy(CaptureStrategy(true,"com.xibei.xdwgkotlin.fileprovide"))
+            .capture(true)
+            .captureStrategy(CaptureStrategy(true,"com.xii.xdpi.fireproofed"))
             .maxSelectable(1)
             .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
             .thumbnailScale(0.85f)
