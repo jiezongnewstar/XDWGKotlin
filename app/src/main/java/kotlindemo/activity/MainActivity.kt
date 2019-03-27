@@ -30,7 +30,6 @@ class MainActivity : Activity(), View.OnClickListener , EasyPermissions.Permissi
 
     private val REQUEST_CODE_QRCODE_PERMISSIONS =1
     private lateinit var webSettings: WebSettings
-    private var path = "/app/index.asp"
     private var firstTime: Long = 0
     val FILE_CHOOSER_RESULT_CODE_FOR_ANDROID_5 = 2
     val FILE_CHOOSER_RESULT_CODE = 3
@@ -79,7 +78,7 @@ class MainActivity : Activity(), View.OnClickListener , EasyPermissions.Permissi
             }
 
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                return super.shouldOverrideUrlLoading(view, BASEURL+path)
+                return super.shouldOverrideUrlLoading(view, "https://github.com/jiezongnewstar")
             }
 
             override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
@@ -208,7 +207,7 @@ class MainActivity : Activity(), View.OnClickListener , EasyPermissions.Permissi
 
         }
 
-        webview.loadUrl("https://www.baidu.com")
+        webview.loadUrl("https://github.com/jiezongnewstar")
 
     }
 
@@ -217,8 +216,7 @@ class MainActivity : Activity(), View.OnClickListener , EasyPermissions.Permissi
         when(v!!.id){
             R.id.iv_scan -> webview.reload()
             R.id.iv_home -> {
-                path = "/app/index.asp"
-                webview.loadUrl("https://www.baidu.com")
+                webview.loadUrl("https://github.com/jiezongnewstar")
             }
             R.id.iv_refresh ->{
                 fromWhere = "qrcode"
