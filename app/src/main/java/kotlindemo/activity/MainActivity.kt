@@ -3,7 +3,6 @@ package kotlindemo.activity
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
@@ -16,7 +15,6 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.webkit.*
-import com.bumptech.glide.Glide
 import com.xibei.xdwgkotlin.R
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
@@ -26,7 +24,6 @@ import kotlindemo.util.Constant.Companion.BASEURL
 import kotlindemo.util.ToastUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item_toolbar.*
-import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 
 class MainActivity : Activity(), View.OnClickListener , EasyPermissions.PermissionCallbacks, SwipeRefreshLayout.OnRefreshListener {
@@ -211,7 +208,7 @@ class MainActivity : Activity(), View.OnClickListener , EasyPermissions.Permissi
 
         }
 
-        webview.loadUrl(BASEURL+path)
+        webview.loadUrl("https://www.baidu.com")
 
     }
 
@@ -221,7 +218,7 @@ class MainActivity : Activity(), View.OnClickListener , EasyPermissions.Permissi
             R.id.iv_scan -> webview.reload()
             R.id.iv_home -> {
                 path = "/app/index.asp"
-                webview.loadUrl(BASEURL+path)
+                webview.loadUrl("https://www.baidu.com")
             }
             R.id.iv_refresh ->{
                 fromWhere = "qrcode"
